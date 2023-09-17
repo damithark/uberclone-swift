@@ -22,7 +22,7 @@ struct LocationSearchView: View {
                         .frame(width: 6, height: 6)
                     Rectangle()
                         .fill(Color(.systemGray3))
-                        .frame(width: 1, height: 24)
+                        .frame(width: 1, height: 22)
                     Rectangle()
                         .fill(.black)
                         .frame(width: 6, height: 6)
@@ -30,17 +30,19 @@ struct LocationSearchView: View {
                 
                 VStack {
                     TextField("Current location", text: $startLocationText)
-                        .frame(height: 32)
+                        .frame(height: 36)
                         .background(Color(.systemGroupedBackground))
-                        .padding(.trailing)
                     
                     TextField("Where to?", text: $destinationLocationText)
-                        .frame(height: 32)
+                        .frame(height: 36)
                         .background(Color(.systemGray4))
-                        .padding(.trailing)
                 }
             }
             .padding(.horizontal)
+            .padding(.top, 64)
+            
+            Divider()
+                .padding()
             
             // List View
             ScrollView {
@@ -51,6 +53,7 @@ struct LocationSearchView: View {
                 }
             }
         }
+        .background(.white)
     }
 }
 

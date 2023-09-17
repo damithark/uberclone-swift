@@ -13,8 +13,10 @@ struct MapViewActionButton: View {
     
     var body: some View {
         Button {
-            withAnimation(.spring()) {
-                showLocationSearchView.toggle()
+            if showLocationSearchView {
+                withAnimation(.spring()) {
+                    showLocationSearchView.toggle()
+                }
             }
         } label: {
             Image(systemName: showLocationSearchView ? "arrow.backward" : "line.3.horizontal")

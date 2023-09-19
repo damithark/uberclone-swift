@@ -16,7 +16,6 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     private let searchCompleter = MKLocalSearchCompleter()
     var queryFragment: String = "" {
         didSet {
-            print("DEBUG: Query fragment is \(queryFragment)")
             searchCompleter.queryFragment = queryFragment
         }
     }

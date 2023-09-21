@@ -51,6 +51,9 @@ struct LocationSearchView: View {
                     ForEach(viewModel.results ,id: \.self) {
                         result in
                         LocationSearchResultCell(title: result.title, subTitle: result.subtitle)
+                            .onTapGesture {
+                                showLocationView.toggle()
+                            }
                     }
                 }
             }
@@ -61,6 +64,6 @@ struct LocationSearchView: View {
 
 struct LocationSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationSearchView()
+        LocationSearchView(showLocationView: .constant(false))
     }
 }

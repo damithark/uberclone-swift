@@ -32,8 +32,15 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     
     func selectLocation(_ localSearch: MKLocalSearchCompletion) {
         locationSearch(forLocalSearchCompletion: localSearch) { response, error in
-            guard let item = response?.mapItems.first else { return }
+            if let error = error {
+                print("DEBUG: Location search failed with error \(error)")
+                return
+            }
             
+            guard let item = response?.mapItems.first else { return }
+            let coordinate = item.placemark.coordinate
+            
+            print("DEBUG: Location coordinates \(coordinate)")
         }
     }
     

@@ -30,9 +30,13 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     
     // MARK: - Helpers
     
-    func selectLocation(_ location: String) {
-        self.selectedLocation = location
-        print("DEBUG: Selected location is \(self.selectedLocation ?? "Empty")")
+    func selectLocation(_ location: MKLocalSearchCompletion) {
+        
+    }
+    
+    func locationSearch(forLocalSearchCompletion localSearch: MKLocalSearchCompletion, completion: @escaping MKLocalSearch.CompletionHandler) {
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = localSearch.title.appending(localSearch.subtitle)
     }
     
 }

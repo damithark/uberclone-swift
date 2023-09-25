@@ -61,6 +61,7 @@ extension UberMapViewRepresentable {
         // MARK - Helpers
         
         func addAndSelectAnnotation(withCoordinate coordinate: CLLocationCoordinate2D) {
+            parent.mapView.removeAnnotation(parent.mapView.annotations as! MKAnnotation)
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
             self.parent.mapView.addAnnotation(annotation)

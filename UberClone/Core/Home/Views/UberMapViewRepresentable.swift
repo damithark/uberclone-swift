@@ -64,8 +64,8 @@ extension UberMapViewRepresentable {
             parent.mapView.removeAnnotation(parent.mapView.annotations as! MKAnnotation)
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
-            self.parent.mapView.addAnnotation(annotation)
-            self.parent.mapView.selectAnnotation(annotation, animated: true)
+            parent.mapView.addAnnotation(annotation)
+            parent.mapView.selectAnnotation(annotation, animated: true)
             parent.mapView.showAnnotations(parent.mapView.annotations, animated: true)
         }
     }

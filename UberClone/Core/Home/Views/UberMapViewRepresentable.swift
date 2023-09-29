@@ -90,7 +90,8 @@ extension UberMapViewRepresentable {
                     print("DEBUG: Failed to get directions with error")
                     return
                 }
-                
+                guard let  route = response?.routes.first else { return }
+                completion(route)
             }
         }
     }

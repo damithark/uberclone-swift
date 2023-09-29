@@ -33,6 +33,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
             didSet {
                 print("DEBUG: Selected location in map view \(String(describing: coordinate))")
                 context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0))
+                context.coordinator.configurePolyline(withDestination: coordinate)
             }
         }
     }
@@ -48,6 +49,7 @@ extension UberMapViewRepresentable {
         
         // MARK: - Properties
         let parent: UberMapViewRepresentable
+        var userCurrentLocationCoordinate: CLLocationCoordinate2D?
         
         // MARK: - Lifecycle
         init(parent: UberMapViewRepresentable) {
@@ -58,6 +60,7 @@ extension UberMapViewRepresentable {
         // MARK: - MKMapViewDelegate
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+            self.userCurrentLocationCoordinate = userLocation.coordinate
             let region = MKCoordinateRegion(
                 center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude),
                 span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
@@ -75,6 +78,14 @@ extension UberMapViewRepresentable {
             parent.mapView.addAnnotation(annotation)
             parent.mapView.selectAnnotation(annotation, animated: true)
             parent.mapView.showAnnotations(parent.mapView.annotations, animated: true)
+        }
+        
+        func configurePolyline(withDestination coordinate: CLLocationCoordinate2D) {
+            guard let userLocationCordinate = self.userCurrentLocationCoordinate else { return }
+            getDestinationRoute(from: userLocationCordinate, to: coordinate) { route in
+                self.parent.mapView.addOverlay(route.polyline)
+                
+            }
         }
         
         func getDestinationRoute(from userLocation: CLLocationCoordinate2D, to destinationCoordinate: CLLocationCoordinate2D, completion: @escaping(MKRoute) -> Void) {

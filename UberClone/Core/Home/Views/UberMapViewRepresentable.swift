@@ -24,10 +24,16 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        print("DEBUG: Selected coordinate after search \(String(describing: locationViewModel.selectedLocationCoordinate?.latitude)) & \(String(describing: locationViewModel.selectedLocationCoordinate?.longitude))")
-        if let coordinate = locationViewModel.selectedLocationCoordinate {
-            print("DEBUG: Selected location in map view \(coordinate)")
-            context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
+        
+//        if let coordinate = locationViewModel.selectedLocationCoordinate {
+//            print("DEBUG: Selected location in map view \(coordinate)")
+//            context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
+//        }
+        var coordinate = locationViewModel.selectedLocationCoordinate {
+            didSet {
+                print("DEBUG: Selected location in map view \(String(describing: coordinate))")
+                context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0))
+            }
         }
     }
     

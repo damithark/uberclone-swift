@@ -25,16 +25,10 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         
-//        if let coordinate = locationViewModel.selectedLocationCoordinate {
-//            print("DEBUG: Selected location in map view \(coordinate)")
-//            context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
-//        }
-        var coordinate = locationViewModel.selectedLocationCoordinate {
-            didSet {
-                print("DEBUG: Selected location in map view \(String(describing: coordinate))")
-                context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0))
-                context.coordinator.configurePolyline(withDestination: coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0))
-            }
+        if let coordinate = locationViewModel.selectedLocationCoordinate {
+            print("DEBUG: Selected location in map view \(coordinate)")
+            context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
+            context.coordinator.configurePolyline(withDestination: coordinate)
         }
     }
     

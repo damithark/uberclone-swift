@@ -76,5 +76,22 @@ extension UberMapViewRepresentable {
             parent.mapView.selectAnnotation(annotation, animated: true)
             parent.mapView.showAnnotations(parent.mapView.annotations, animated: true)
         }
+        
+        func getDestinationRoute(from userLocation: CLLocationCoordinate2D, to destinationCoordinate: CLLocationCoordinate2D, completion: @escaping(MKRoute) -> Void) {
+            let userPlacemark = MKPlacemark(coordinate: userLocation)
+            let destPlacemark = MKPlacemark(coordinate: destinationCoordinate)
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: userPlacemark)
+            request.destination = MKMapItem(placemark: destPlacemark)
+            let directions = MKDirections(request: request)
+            
+            directions.calculate { response, error in
+                if let error = error {
+                    print("DEBUG: Failed to get directions with error")
+                    return
+                }
+                
+            }
+        }
     }
 }

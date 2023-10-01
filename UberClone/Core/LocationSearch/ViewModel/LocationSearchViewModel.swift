@@ -14,7 +14,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     
     @Published var results = [MKLocalSearchCompletion]()
     @Published var selectedLocationCoordinate: CLLocationCoordinate2D?
-    @Published var extraSelectedLocCoord = CLLocationCoordinate2D(latitude: 6.926927421945297, longitude: 79.85838532447815)
+    @Published var extraSelectedLocCoord = false
     private let searchCompleter = MKLocalSearchCompleter()
     
     var queryFragment: String = "" {
@@ -32,6 +32,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     // MARK: - Helpers
     
     func selectLocation(_ localSearch: MKLocalSearchCompletion) {
+        extraSelectedLocCoord = true
         locationSearch(forLocalSearchCompletion: localSearch) { response, error in
             if let error = error {
                 print("DEBUG: Location search failed with error \(error.localizedDescription)")
@@ -40,7 +41,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
             
             guard let item = response?.mapItems.first else { return }
             let coordinate = item.placemark.coordinate
-            self.extraSelectedLocCoord = coordinate
+            self.selectedLocationCoordinate = coordinate
             print("DEBUG: Location coordinates \(String(describing: self.selectedLocationCoordinate))")
         }
     }

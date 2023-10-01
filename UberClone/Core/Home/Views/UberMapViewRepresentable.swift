@@ -12,7 +12,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     
     let mapView = MKMapView()
     let locationManager = LocationManager()
-    @StateObject var locationViewModel = LocationSearchViewModel()
+    @ObservedObject var locationViewModel = LocationSearchViewModel()
     
     func makeUIView(context: Context) -> some UIView {
         mapView.delegate = context.coordinator
@@ -26,10 +26,10 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: UIViewType, context: Context) {
         
         if let coordinate = locationViewModel.selectedLocationCoordinate {
-            print("DEBUG: Selected location in map view \(coordinate)")
             context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
             context.coordinator.configurePolyline(withDestination: coordinate)
         }
+        print("DEBUG: Selected location in map view \(String(describing: locationViewModel.selectedLocationCoordinate))")
     }
     
     func makeCoordinator() -> MapCoordinator {
@@ -64,13 +64,11 @@ extension UberMapViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) ->
-            MKOverlayRenderer {
-                let polyline = MKPolylineRenderer(overlay: overlay)
-                polyline.strokeColor = .systemBlue
-                polyline.lineWidth = 4
-                return polyline
-                
-            }
+        MKOverlayRenderer {
+            let polyline = MKPolylineRenderer(overlay: overlay)
+            polyline.strokeColor = .systemBlue
+            polyline.lineWidth = 4
+            return polyline
         }
         
         // MARK - Helpers
@@ -102,7 +100,7 @@ extension UberMapViewRepresentable {
             
             directions.calculate { response, error in
                 if let error = error {
-                    print("DEBUG: Failed to get directions with error")
+                    print("DEBUG: Failed to get directions with error \(error.localizedDescription)")
                     return
                 }
                 guard let  route = response?.routes.first else { return }

@@ -32,17 +32,16 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     // MARK: - Helpers
     
     func selectLocation(_ localSearch: MKLocalSearchCompletion) {
-        extraSelectedLocCoord = true
         locationSearch(forLocalSearchCompletion: localSearch) { response, error in
             if let error = error {
                 print("DEBUG: Location search failed with error \(error.localizedDescription)")
                 return
             }
-            
+            self.extraSelectedLocCoord = true
             guard let item = response?.mapItems.first else { return }
             let coordinate = item.placemark.coordinate
             self.selectedLocationCoordinate = coordinate
-            print("DEBUG: Location coordinates \(String(describing: self.selectedLocationCoordinate))")
+            print("DEBUG: Location coordinates \(String(describing: self.extraSelectedLocCoord))")
         }
     }
     

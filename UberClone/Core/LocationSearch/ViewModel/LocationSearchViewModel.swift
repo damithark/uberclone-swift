@@ -14,6 +14,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
     
     @Published var results = [MKLocalSearchCompletion]()
     @Published var selectedLocationCoordinate: CLLocationCoordinate2D?
+    @Published var extraSelectedLocCoord = CLLocationCoordinate2D(latitude: 6.926927421945297, longitude: 79.85838532447815)
     private let searchCompleter = MKLocalSearchCompleter()
     
     var queryFragment: String = "" {
@@ -39,7 +40,7 @@ class LocationSearchViewModel: NSObject, ObservableObject {
             
             guard let item = response?.mapItems.first else { return }
             let coordinate = item.placemark.coordinate
-            self.selectedLocationCoordinate = coordinate
+            self.extraSelectedLocCoord = coordinate
             print("DEBUG: Location coordinates \(String(describing: self.selectedLocationCoordinate))")
         }
     }

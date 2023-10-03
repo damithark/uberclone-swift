@@ -13,6 +13,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     let mapView = MKMapView()
     let locationManager = LocationManager()
     @ObservedObject var locationViewModel = LocationSearchViewModel()
+//    @State var selectedCoordinate: CLLocationCoordinate2D
     
     func makeUIView(context: Context) -> some UIView {
         mapView.delegate = context.coordinator
@@ -29,9 +30,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
             context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
             context.coordinator.configurePolyline(withDestination: coordinate)
         }
-        if locationViewModel.extraSelectedLocCoord {
-            
-        }
+        
         print("DEBUG: Selected location in map view \(String(describing: locationViewModel.selectedLocationCoordinate))")
     }
     
@@ -114,5 +113,5 @@ extension UberMapViewRepresentable {
 }
 
 extension Notification.Name {
-    static let URLContainerDidAddURL = NSNotification.Name("URLContainerDidAddURL")
+    static let URLContainerDidAddURL = NSNotification.Name("DidSelectDestinationLocation")
 }

@@ -35,14 +35,14 @@ class LocationSearchViewModel: NSObject, ObservableObject {
         self.extraSelectedLocCoord = true
         locationSearch(forLocalSearchCompletion: localSearch) { response, error in
             if let error = error {
-                print("DEBUG: Location search failed with error \(error.localizedDescription)")
+//                print("DEBUG: Location search failed with error \(error.localizedDescription)")
                 return
             }
             self.extraSelectedLocCoord = true
             guard let item = response?.mapItems.first else { return }
             let coordinate = item.placemark.coordinate
             self.selectedLocationCoordinate = coordinate
-            print("DEBUG: Location coordinates \(String(describing: self.extraSelectedLocCoord))")
+//            print("DEBUG: Location coordinates \(String(describing: self.extraSelectedLocCoord))")
         }
     }
     

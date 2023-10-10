@@ -53,6 +53,11 @@ extension UberMapViewRepresentable {
         init(parent: UberMapViewRepresentable) {
             self.parent = parent
             super.init()
+            NotificationCenter.default.addObserver(self, selector: #selector(updateSelectedCoordinateWithNotification), name: NSNotification.Name("UpdateSelectedSearchLocation"), object: nil)
+        }
+        
+        @objc private func updateSelectedCoordinateWithNotification(_ notification: NSNotification) {
+              print("notification: \(notification)")
         }
         
         // MARK: - MKMapViewDelegate

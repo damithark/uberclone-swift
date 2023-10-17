@@ -60,8 +60,9 @@ extension UberMapViewRepresentable {
               print("notification: \(notification)")
             if let userInfo = notification.userInfo as? NSDictionary
                 {
-                  if let progressValue = userInfo["coordinate"] as? CLLocationCoordinate2D {
-                      self.addAndSelectAnnotation(withCoordinate: progressValue)
+                  if let coordinate = userInfo["coordinate"] as? CLLocationCoordinate2D {
+                      self.addAndSelectAnnotation(withCoordinate: coordinate)
+                      self.configurePolyline(withDestination: coordinate)
                   }
                 }
         }
@@ -89,7 +90,7 @@ extension UberMapViewRepresentable {
         // MARK - Helpers
         
         func addAndSelectAnnotation(withCoordinate coordinate: CLLocationCoordinate2D) {
-            parent.mapView.removeAnnotation(parent.mapView.annotations as! MKAnnotation)
+//            parent.mapView.removeAnnotation(parent.mapView.annotations as! MKAnnotation)
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
             parent.mapView.addAnnotation(annotation)

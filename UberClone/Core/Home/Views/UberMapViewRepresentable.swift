@@ -25,10 +25,6 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         
-//        if let coordinate = locationViewModel.selectedLocationCoordinate {
-//            context.coordinator.addAndSelectAnnotation(withCoordinate: coordinate)
-//            context.coordinator.configurePolyline(withDestination: coordinate)
-//        }
         if locationViewModel.extraSelectedLocCoord {
             context.coordinator.addAndSelectAnnotation(withCoordinate: CLLocationCoordinate2D(latitude: 6.926927421945297, longitude: 79.85838532447815))
             context.coordinator.configurePolyline(withDestination: CLLocationCoordinate2D(latitude: 6.926927421945297, longitude: 79.85838532447815))

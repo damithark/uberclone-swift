@@ -57,7 +57,7 @@ extension UberMapViewRepresentable {
         }
         
         @objc private func updateSelectedCoordinateWithNotification(_ notification: NSNotification) {
-              print("notification: \(notification)")
+//              print("notification: \(notification)")
             if let userInfo = notification.userInfo as? NSDictionary
                 {
                   if let coordinate = userInfo["coordinate"] as? CLLocationCoordinate2D {

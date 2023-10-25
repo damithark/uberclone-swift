@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var showLocationSearchView = false
     @State private var mapState = MapViewState.noInput
     
     var body: some View {
@@ -18,7 +17,7 @@ struct HomeView: View {
                 .ignoresSafeArea()
             if mapState == .noInput {
                 LocationSearchView(showLocationSearchView: $showLocationSearchView)
-            } else  {
+            } else if mapState == .searchingForLocation {
                 LocationSearchActivationView()
                     .padding(.top, 70)
                     .onTapGesture {

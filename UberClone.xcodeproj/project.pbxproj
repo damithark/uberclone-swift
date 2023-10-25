@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A213ABFB2AE99377006A5106 /* MapViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A213ABFA2AE99377006A5106 /* MapViewState.swift */; };
 		A279683F2AB22A5C00DA0CA5 /* UberCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A279683E2AB22A5C00DA0CA5 /* UberCloneApp.swift */; };
 		A27968432AB22A5D00DA0CA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27968422AB22A5D00DA0CA5 /* Assets.xcassets */; };
 		A27968462AB22A5D00DA0CA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A27968452AB22A5D00DA0CA5 /* Preview Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A213ABFA2AE99377006A5106 /* MapViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewState.swift; sourceTree = "<group>"; };
 		A279683B2AB22A5C00DA0CA5 /* UberClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A279683E2AB22A5C00DA0CA5 /* UberCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberCloneApp.swift; sourceTree = "<group>"; };
 		A27968422AB22A5D00DA0CA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		A27968542AB48FAD00DA0CA5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A213ABFA2AE99377006A5106 /* MapViewState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				A279686A2ABA1A8100DA0CA5 /* LocationSearchViewModel.swift in Sources */,
 				A27968662AB7763300DA0CA5 /* LocationSearchView.swift in Sources */,
 				A279685C2AB627EF00DA0CA5 /* LocationManager.swift in Sources */,
+				A213ABFB2AE99377006A5106 /* MapViewState.swift in Sources */,
 				A27968642AB6BEFD00DA0CA5 /* MapViewActionButton.swift in Sources */,
 				A279683F2AB22A5C00DA0CA5 /* UberCloneApp.swift in Sources */,
 				A279685A2AB4909900DA0CA5 /* UberMapViewRepresentable.swift in Sources */,
